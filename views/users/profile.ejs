@@ -1,0 +1,54 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Profile</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header text-center">
+                    <h4>User Details</h4>
+                </div>
+                <div class="card-body">
+                    <h5>Username: <%= user.username %></h5>
+                    <h5>Email: <%= user.email %></h5>
+                    <h5>Id: <%= user.id %></h5>
+                    <h5>Role: <%= user.role %></h5>
+                    <% if (userDetails) { %>
+                        <% if (user.role === 'student') { %>
+                            <h5>Name: <%= userDetails.name %></h5>
+                            <h5>Graduation Year: <%= userDetails.graduationYear %></h5>
+                            <h5>Major: <%= userDetails.major %></h5>
+                        <% } else if (user.role === 'staff') { %>
+                            <h5>Name: <%= userDetails.name %></h5>
+                            <h5>Current Position: <%= userDetails.currentPosition %></h5>
+                        <% } else if (user.role === 'alumni') { %>
+                            <h5>Name: <%= userDetails.name %></h5>
+                            <h5>Graduation Year: <%= userDetails.graduationYear %></h5>
+                            <h5>Major: <%= userDetails.major %></h5>
+                            <h5>Current Position: <%= userDetails.currentPosition %></h5>
+                            <h5>Bio: <%= userDetails.bio || 'N/A' %></h5>
+                        <% } %>
+                    <% } else { %>
+                        <h5>No additional details found.</h5>
+                    <% } %>
+                    <div class="text-center mt-4">
+                        <a href="/alumni" class="btn btn-primary">Back to Alumni List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa; /* Light background color */
+    }
+    .card {
+        border-radius: 10px; /* Rounded corners */
+    }
+    .card-header {
+        background-color: #007bff; /* Bootstrap primary color */
+        color: white; /* Text color */
+    }
+</style>

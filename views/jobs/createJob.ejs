@@ -1,0 +1,47 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container my-5">
+    <h1 class="text-center mb-4">Post a New Job</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form action="/jobs" method="POST" class="bg-light p-4 border rounded shadow-sm">
+                <div class="form-group mb-3">
+                    <label for="title" class="form-label">Job Title</label>
+                    <input type="text" class="form-control" name="job[title]" required placeholder="Enter job title">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="description" class="form-label">Job Description</label>
+                    <textarea class="form-control" name="job[description]" required rows="4" placeholder="Enter job description"></textarea>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="company" class="form-label">Company</label>
+                    <input type="text" class="form-control" name="job[company]" required placeholder="Enter company name">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" class="form-control" name="job[location]" required placeholder="Enter job location">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Post Job</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Optional: Add custom styles -->
+<style>
+    body {
+        background-color: #f7f9fc; /* Light background color */
+    }
+    .form-control:focus {
+        border-color: #007bff; /* Custom focus border color */
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Custom focus shadow */
+    }
+    h1 {
+        color: #343a40; /* Darker text color for better readability */
+    }
+    .btn-primary {
+        background-color: #007bff; /* Primary button color */
+        border-color: #007bff; /* Button border color */
+    }
+</style>

@@ -1,0 +1,29 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container">
+    <h1 class="mb-5 text-center">List of All Alumni</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="list-group">
+
+                <% for (let alumni of alumnis) { %>
+                    <a href="/alumni/<%= alumni.id %>" class="list-group-item list-group-item-action mb-3 shadow-sm" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><%= alumni.name %></h5>
+                            <small class="text-muted">3 days ago</small>
+                        </div>
+                        <p class="mb-1"><%= alumni.bio %></p>
+                        <small class="text-muted">Current position: <%= alumni.currentPosition %></small>
+                    </a>
+                <% } %>
+
+                <% if (alumnis.length === 0) { %>
+                    <div class="alert alert-warning text-center" role="alert">
+                        No alumni found. Please add some alumni to the list.
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>

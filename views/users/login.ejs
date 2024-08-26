@@ -1,0 +1,58 @@
+<% layout('layouts/boilerplate') %>
+
+<% layout('layouts/boilerplate') %>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Login Page</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header text-center">
+                    <h4>Welcome Back!</h4>
+                </div>
+                <div class="card-body">
+                    <% if (locals.error) { %>
+                        <div class="alert alert-danger">
+                            <%= locals.error %>
+                        </div>
+                    <% } %>
+                    <form action="/login" method="POST" novalidate>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                            <div class="invalid-feedback">
+                                Please enter your username.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            <div class="invalid-feedback">
+                                Please enter your password.
+                            </div>
+                        </div>
+                        <div class="mb-3 text-center">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                        <div class="text-center">
+                            <p>Don't have an account? <a href="/alumni/register">Register here</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa; /* Light background color */
+    }
+    .card {
+        border-radius: 10px; /* Rounded corners */
+    }
+    .card-header {
+        background-color: #007bff; /* Bootstrap primary color */
+        color: white; /* Text color */
+    }
+</style>

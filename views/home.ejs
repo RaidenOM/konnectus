@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Vibelink - Connect with alumni, students, and staff.">
+    <meta name="author" content="Your Name">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Vibelink - Connect with Your Community</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/cover/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link href="/stylesheets/cover.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+            <div class="inner">
+                <h3 class="masthead-brand">Vibelink</h3>
+                <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link active" href="/">Home</a>
+                    <a class="nav-link" href="/alumni">Alumnis</a>
+                    <a class="nav-link" href="/events">Events</a>
+                    <a class="nav-link" href="#">Donation Money</a>
+                    <a class="nav-link" href="/jobs">Job Postings</a>
+                    
+                    <% if (currentUser) { %>
+                        
+                        <% if (currentUser.role === 'student') { %>
+                            <a class="nav-link" href="/donate">Donate</a>
+                            <% } else if (currentUser.role === 'staff') { %>
+                                <a class="nav-link" href="/alumni/new">Add Alumni</a>
+                        <% } %>
+                            <a class="nav-link" href="/logout">Logout</a>
+                    <% } else { %>
+                        <a class="nav-link" href="/alumni/login">Login</a>
+                        <a class="nav-link" href="/alumni/register">Register</a>
+                    <% } %>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Include flash messages -->
+        <%- include('partials/flash') %>
+
+        <main role="main" class="inner cover">
+            <h1 class="cover-heading">Welcome to Vibelink</h1>
+            <p class="lead">Connect with your alumni network, create profiles as a student or staff, and stay engaged with your community.</p>
+            <p class="lead">
+                <a href="/alumni/register" class="btn btn-lg btn-secondary">Create Your Profile</a>
+            </p>
+        </main>
+
+        <footer class="mastfoot mt-auto">
+            <div class="inner">
+                <p>&copy; 2024 Developed by <a href="https://www.github.com/RaidenOM" class="footer-link">Om Kumar</a>. All rights reserved.</p>
+                <p>Explore the project on <a href="https://www.github.com/RaidenOM/campscape" class="footer-link">GitHub</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

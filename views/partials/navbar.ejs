@@ -1,0 +1,33 @@
+<nav class="sticky-top navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Vibelink</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/alumni">Alumnis</a>
+                <a href="/events" class="nav-link">Events</a>
+                <a href="#" class="nav-link">Donation Money</a>
+                <a href="/jobs" class="nav-link">Job Postings</a>
+            </div>
+            <div class="navbar-nav ms-auto">
+                <% if (!currentUser) { %>
+                    <a href="/login" class="nav-link">Login</a>
+                    <a href="/register" class="nav-link">Register</a>
+                <% } else { %>
+                    <a href="/profile" class="nav-link">Profile</a> <!-- Profile link added -->
+                    <a href="/logout" class="nav-link">Logout</a>
+                    <% if (currentUser.role === 'student') { %>
+                        <a href="#" class="nav-link">Donate</a>
+                    <% } %>
+                    <% if (currentUser.role === 'staff') { %>
+                        <a class="nav-link" href="/alumni/new">Add Alumni</a>
+                    <% } %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</nav>

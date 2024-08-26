@@ -1,0 +1,80 @@
+<% layout('layouts/boilerplate') %>
+
+<h1 class="text-center my-5">Add Alumni</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Alumni Information</h4>
+                </div>
+                <div class="card-body">
+                    <form action="/alumni" method="POST" novalidate>
+
+                        <!-- User Information Section -->
+                        <h5 class="mb-4">User Information</h5>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="alumni[username]" required>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="alumni[password]" required>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="alumni[email]" required>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <!-- Alumni Information Section -->
+                        <h5 class="mt-4 mb-4">Alumni Information</h5>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="alumni[name]" required>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="graduationYear" class="form-label">Graduation Year</label>
+                            <input type="text" class="form-control" id="graduationYear" name="alumni[graduationYear]" required>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="major" class="form-label">Major</label>
+                            <input type="text" class="form-control" id="major" name="alumni[major]" required>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="position" class="form-label">Current Position</label>
+                            <input type="text" class="form-control" id="position" name="alumni[currentPosition]" required>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="bio" class="form-label">Bio</label>
+                            <textarea class="form-control" name="alumni[bio]" id="bio" rows="4" required></textarea>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS (optional, for functionality) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>

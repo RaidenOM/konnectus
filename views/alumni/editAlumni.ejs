@@ -1,0 +1,52 @@
+<% layout('layouts/boilerplate') %>
+
+<h1 class="text-center my-5">Edit Alumni</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-warning text-white text-center">
+                    <h4>Edit Alumni Information</h4>
+                </div>
+                <div class="card-body">
+                    <form action="/alumni/<%= alumni.id %>/?_method=PUT" method="POST" novalidate>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="alumni[name]" value="<%= alumni.name %>" required>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="graduationYear" class="form-label">Graduation Year</label>
+                            <input type="text" class="form-control" id="graduationYear" name="alumni[graduationYear]" value="<%= alumni.graduationYear %>" required>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="major" class="form-label">Major</label>
+                            <input type="text" class="form-control" id="major" name="alumni[major]" value="<%= alumni.major %>" required>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="currentPosition" class="form-label">Current Position</label>
+                            <input type="text" class="form-control" id="currentPosition" name="alumni[currentPosition]" value="<%= alumni.currentPosition %>" required>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="bio" class="form-label">Bio</label>
+                            <textarea class="form-control" name="alumni[bio]" id="bio" rows="4" required><%= alumni.bio %></textarea>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-warning">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
