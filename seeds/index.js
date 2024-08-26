@@ -1,8 +1,10 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
+const dbUrl = process.env.DB_URL
 const Alumni = require('../models/alumni'); // Adjust the path based on your project structure
 
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/vibelink')
+mongoose.connect(dbUrl)
 .then(() => {
     console.log('Connected to MongoDB');
 })

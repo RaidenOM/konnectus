@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
+
 const express = require('express');
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
@@ -16,9 +20,10 @@ const catchAsync = require('./utilites/catchAsync');
 const { storeReturnTo, isLoggedIn, isStaff, isAlumni } = require('./middleware');
 const Event = require('./models/event')
 const Job = require('./models/job');
+const dbUrl = process.env.DB_URL
 
 // 3. Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/vibelink')
+mongoose.connect(dbUrl)
     .then(() => {
         console.log('connected to database');
     })
@@ -27,7 +32,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/vibelink')
     });
 
 const store = MongoStore.create({
-    mongoUrl: 'mongodb://127.0.0.1:27017/vibelink',
+    mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
     crypto: {
         secret: 'thisshouldbeabettersecret!',
