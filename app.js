@@ -117,14 +117,6 @@ app.get('/alumni/:id/edit', isStaff, catchAsync(async (req, res) => {
     res.render('alumni/editAlumni', { alumni });
 }));
 
-app.get('/alumni/login', (req, res) => {
-    res.render('users/login');
-});
-
-app.get('/alumni/register', (req, res) => {
-    res.render('users/register');
-});
-
 app.get('/alumni/:id', catchAsync(async (req, res) => {
     const { id } = req.params;
     const alumni = await Alumni.findById(id);
