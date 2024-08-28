@@ -1,5 +1,4 @@
 const Job = require('../models/job')
-const Alumni = require('../models/alumni')
 
 
 module.exports.showJobs = async (req, res) => {
@@ -13,26 +12,23 @@ module.exports.newJobForm = (req, res) => {
 }
 
 module.exports.showJob = async (req, res) => {
-    const job = await Job.findById(req.params.id).populate('postedBy');
+    const job = await Job.findById(req.params.id);
     if (!job) {
         req.flash('error', 'Job not found!');
         return res.redirect('/jobs');
     }
-    res.render('jobs/viewJob', { job, user: req.user});
+    res.render('jobs/viewJob', { job });
 }
 
 
 module.exports.createJob = async (req, res) => {
     const { title, description, company, location } = req.body.job;
-    const alumni = await Alumni.findOne({userId: req.user.id})
-    console.log(alumni)
-    console.log(req.user)
     const job = new Job({
         title,
         description,
         company,
         location,
-        postedBy: alumni.id
+        postedBy: req.user.id
     });
     await job.save();
     req.flash('success', 'Job posted successfully!');

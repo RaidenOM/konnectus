@@ -15,7 +15,8 @@
     </div>
 
     <div class="text-center mb-4">
-        <% if (user && job.postedBy && user._id.toString() === job.postedBy.userId.toString()) { %>
+        <% if (currentUser && currentUser.role==='alumni' && job.postedBy.equals(currentUser.id)) { %>
+            
             <form action="/jobs/<%= job._id %>?_method=DELETE" method="POST" class="d-inline">
                 <button type="submit" class="btn btn-danger btn-lg me-2" onclick="return confirm('Are you sure you want to delete this job?');">Delete Job</button>
             </form>

@@ -11,7 +11,7 @@
             <p class="card-text"><strong>Current Position:</strong> <%= alumni.currentPosition %></p>
             <p class="card-text"><strong>Bio:</strong> <%= alumni.bio %></p>
             
-            <% if(currentUser && currentUser.role==='staff') { %>
+            <% if(currentUser && currentUser.role==='staff' && alumni.createdBy.equals(currentUser.id)) { %>
                 <div class="d-flex justify-content-between mt-4">
                     <a class="btn btn-primary" href="/alumni/<%= alumni.id %>/edit">Edit</a>
                     <form action="/alumni/<%= alumni.id %>/?_method=DELETE" method="POST" style="display:inline;">

@@ -19,7 +19,7 @@
                         <p class="card-text"><strong>Date:</strong> <%= event.date.toDateString() %></p>
                         <p class="card-text"><strong>Location:</strong> <%= event.location %></p>
                     </div>
-                    <% if(currentUser && currentUser.role==='staff') { %>
+                    <% if(currentUser && currentUser.role==='staff' && event.createdBy.equals(currentUser.id)) { %>
                         <div class="card-footer d-flex justify-content-between">
                             <a href="/events/<%= event._id %>/edit" class="btn btn-warning">Edit</a>
                             <form action="/events/<%= event._id %>?_method=DELETE" method="POST" style="display:inline;">

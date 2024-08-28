@@ -1,8 +1,43 @@
+const Job = require('./models/job')
+const Event = require('./models/event')
+const Alumni = require('./models/alumni')
+
 module.exports.isLoggedIn = (req, res, next) => {
     if(!req.isAuthenticated()) {
         req.session.returnTo = req.originalUrl
         req.flash('error', 'You must be signed in to complete this action')
         return res.redirect('/login')
+    }
+    next()
+}
+
+module.exports.verifyOwnerAlumni = async (req, res, next)=>{
+    const { id } = req.params
+    const job = await Job.findById(id)
+    if(job.postedBy.equals(req.user.id)) {
+        next()
+    }else {
+        req.flash('error', 'You do not have permissions to do this')
+        res.redirect(`/jobs/${id}`)
+    }
+}
+
+module.exports.verifyStaffEventOwner = async (req, res, next)=>{
+    const { id } = req.params
+    const event = await Event.findById(id)
+    if(!event.createdBy.equals(req.user.id)) {
+        req.flash('error', 'You do not have permissions to do this')
+        return res.redirect(`/events`)
+    }
+    next()
+}
+
+module.exports.verifyStaffAlumniOwner = async (req, res, next)=>{
+    const { id } = req.params
+    const alumni = await Alumni.findById(id)
+    if(!alumni.createdBy.equals(req.user.id)) {
+        req.flash('error', 'You do not have permissions to do this')
+        return res.redirect(`/alumni/${id}`)
     }
     next()
 }

@@ -26,7 +26,7 @@ module.exports.createAlumni = async (req, res) => {
     const { username, password, email, name, currentPosition, graduationYear, major, bio} = req.body.alumni
     const user = new User({username, email})
     const registeredUser = await User.register(user, password)
-    const alumni = new Alumni({userId: user.id, username, currentPosition, graduationYear, major, bio, name})
+    const alumni = new Alumni({createdBy: req.user.id, userId: user.id, username, currentPosition, graduationYear, major, bio, name})
 
     await user.save()
     await alumni.save()
