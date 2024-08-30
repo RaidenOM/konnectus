@@ -15,8 +15,8 @@ module.exports.isLoggedIn = (req, res, next) => {
 
 module.exports.verifyOwnerAlumni = async (req, res, next)=>{
     const { id } = req.params
-    const job = await Job.findById(id)
-    if(job.postedBy.equals(req.user.id)) {
+    const job = await Job.findById(id).populate('postedBy')
+    if(job.postedBy.userId.equals(req.user.id)) {
         next()
     }else {
         req.flash('error', 'You do not have permissions to do this')
