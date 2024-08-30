@@ -1,24 +1,60 @@
 <% layout('layouts/boilerplate') %>
 
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Alumni Profile</h1>
-    
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h2 class="card-title"><%= alumni.name %></h2>
-            <p class="card-text"><strong>Graduation Year:</strong> <%= alumni.graduationYear %></p>
-            <p class="card-text"><strong>Major:</strong> <%= alumni.major %></p>
-            <p class="card-text"><strong>Current Position:</strong> <%= alumni.currentPosition %></p>
-            <p class="card-text"><strong>Bio:</strong> <%= alumni.bio %></p>
-            
-            <% if(currentUser && currentUser.role==='staff' && alumni.createdBy.equals(currentUser.id)) { %>
-                <div class="d-flex justify-content-between mt-4">
-                    <a class="btn btn-primary" href="/alumni/<%= alumni.id %>/edit">Edit</a>
-                    <form action="/alumni/<%= alumni.id %>/?_method=DELETE" method="POST" style="display:inline;">
-                        <button class="btn btn-danger" type="submit">Delete</button>
-                    </form>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-info text-white text-center">
+                    <h2 class="mb-0">Alumni Profile</h2>
                 </div>
-            <% } %>
+                <div class="card-body p-4">
+                    <h3 class="card-title text-center mb-4"><%= alumni.name %></h3>
+                    
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Graduation Year:</strong>
+                            <span class="text-muted"><%= alumni.graduationYear %></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Major:</strong>
+                            <span class="text-muted"><%= alumni.major %></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Current Position:</strong>
+                            <span class="text-muted"><%= alumni.currentPosition %></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Bio:</strong>
+                            <span class="text-muted"><%= alumni.bio %></span>
+                        </li>
+                    </ul>
+
+                    <% if(currentUser && currentUser.role === 'staff' && alumni.createdBy.equals(currentUser.id)) { %>
+                        <div class="d-flex justify-content-center mt-4 gap-3">
+                            <a class="btn btn-primary btn-lg" href="/alumni/<%= alumni.id %>/edit">Edit</a>
+                            <form action="/alumni/<%= alumni.id %>/?_method=DELETE" method="POST" style="display:inline;">
+                                <button class="btn btn-danger btn-lg" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .card {
+        border-radius: 10px;
+    }
+    .card-header {
+        background-color: #17a2b8;
+        color: white;
+    }
+    .text-muted {
+        color: #6c757d;
+    }
+</style>

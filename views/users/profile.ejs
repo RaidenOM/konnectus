@@ -1,38 +1,45 @@
 <% layout('layouts/boilerplate') %>
 
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Profile</h1>
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow">
-                <div class="card-header text-center">
-                    <h4>User Details</h4>
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-info text-white text-center">
+                    <h2 class="mb-0">User Profile</h2>
                 </div>
-                <div class="card-body">
-                    <h5>Username: <%= user.username %></h5>
-                    <h5>Email: <%= user.email %></h5>
-                    <h5>Id: <%= user.id %></h5>
-                    <h5>Role: <%= user.role %></h5>
+                <div class="card-body p-4">
+                    <div class="mb-4">
+                        <h5>Username: <span class="text-muted"><%= user.username %></span></h5>
+                        <h5>Email: <span class="text-muted"><%= user.email %></span></h5>
+                        <h5>Id: <span class="text-muted"><%= user.id %></span></h5>
+                        <h5>Role: <span class="text-muted"><%= user.role %></span></h5>
+                    </div>
+                    
                     <% if (userDetails) { %>
-                        <% if (user.role === 'student') { %>
-                            <h5>Name: <%= userDetails.name %></h5>
-                            <h5>Graduation Year: <%= userDetails.graduationYear %></h5>
-                            <h5>Major: <%= userDetails.major %></h5>
-                        <% } else if (user.role === 'staff') { %>
-                            <h5>Name: <%= userDetails.name %></h5>
-                            <h5>Current Position: <%= userDetails.currentPosition %></h5>
-                        <% } else if (user.role === 'alumni') { %>
-                            <h5>Name: <%= userDetails.name %></h5>
-                            <h5>Graduation Year: <%= userDetails.graduationYear %></h5>
-                            <h5>Major: <%= userDetails.major %></h5>
-                            <h5>Current Position: <%= userDetails.currentPosition %></h5>
-                            <h5>Bio: <%= userDetails.bio || 'N/A' %></h5>
-                        <% } %>
+                        <div class="mb-4">
+                            <% if (user.role === 'student') { %>
+                                <h5>Name: <span class="text-muted"><%= userDetails.name %></span></h5>
+                                <h5>Graduation Year: <span class="text-muted"><%= userDetails.graduationYear %></span></h5>
+                                <h5>Major: <span class="text-muted"><%= userDetails.major %></span></h5>
+                            <% } else if (user.role === 'staff') { %>
+                                <h5>Name: <span class="text-muted"><%= userDetails.name %></span></h5>
+                                <h5>Current Position: <span class="text-muted"><%= userDetails.currentPosition %></span></h5>
+                            <% } else if (user.role === 'alumni') { %>
+                                <h5>Name: <span class="text-muted"><%= userDetails.name %></span></h5>
+                                <h5>Graduation Year: <span class="text-muted"><%= userDetails.graduationYear %></span></h5>
+                                <h5>Major: <span class="text-muted"><%= userDetails.major %></span></h5>
+                                <h5>Current Position: <span class="text-muted"><%= userDetails.currentPosition %></span></h5>
+                                <h5>Bio: <span class="text-muted"><%= userDetails.bio || 'N/A' %></span></h5>
+                            <% } %>
+                        </div>
                     <% } else { %>
-                        <h5>No additional details found.</h5>
+                        <div class="alert alert-warning" role="alert">
+                            No additional details found.
+                        </div>
                     <% } %>
-                    <div class="text-center mt-4">
-                        <a href="/alumni" class="btn btn-primary">Back to Alumni List</a>
+                    
+                    <div class="d-grid gap-2">
+                        <a href="/alumni" class="btn btn-primary btn-lg">Back to Alumni List</a>
                     </div>
                 </div>
             </div>
@@ -42,13 +49,19 @@
 
 <style>
     body {
-        background-color: #f8f9fa; /* Light background color */
+        background-color: #f8f9fa;
     }
     .card {
-        border-radius: 10px; /* Rounded corners */
+        border-radius: 10px;
     }
     .card-header {
-        background-color: #007bff; /* Bootstrap primary color */
-        color: white; /* Text color */
+        background-color: #17a2b8;
+        color: white;
+    }
+    h5 {
+        font-size: 1.1rem;
+    }
+    .text-muted {
+        color: #6c757d;
     }
 </style>

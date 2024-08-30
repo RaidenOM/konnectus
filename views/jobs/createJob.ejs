@@ -1,47 +1,54 @@
 <% layout('layouts/boilerplate') %>
 
-<div class="container my-5">
-    <h1 class="text-center mb-4">Post a New Job</h1>
-
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form action="/jobs" method="POST" class="bg-light p-4 border rounded shadow-sm">
-                <div class="form-group mb-3">
-                    <label for="title" class="form-label">Job Title</label>
-                    <input type="text" class="form-control" name="job[title]" required placeholder="Enter job title">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0 text-center">Post a New Job</h2>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="description" class="form-label">Job Description</label>
-                    <textarea class="form-control" name="job[description]" required rows="4" placeholder="Enter job description"></textarea>
+                <div class="card-body p-4">
+                    <form action="/jobs" method="POST" novalidate class="needs-validation">
+                        <div class="form-group mb-3">
+                            <label for="title" class="form-label">Job Title</label>
+                            <input type="text" class="form-control" id="title" name="job[title]"
+                                placeholder="Enter job title" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="description" class="form-label">Job Description</label>
+                            <textarea class="form-control" id="description" name="job[description]" rows="4"
+                                placeholder="Enter job description" required></textarea>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="company" class="form-label">Company</label>
+                            <input type="text" class="form-control" id="company" name="job[company]"
+                                placeholder="Enter company name" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="location" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="location" name="job[location]"
+                                placeholder="Enter job location" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success btn-lg">Post Job</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="company" class="form-label">Company</label>
-                    <input type="text" class="form-control" name="job[company]" required placeholder="Enter company name">
-                </div>
-                <div class="form-group mb-3">
-                    <label for="location" class="form-label">Location</label>
-                    <input type="text" class="form-control" name="job[location]" required placeholder="Enter job location">
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Post Job</button>
-            </form>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Optional: Add custom styles -->
-<style>
-    body {
-        background-color: #f7f9fc; /* Light background color */
-    }
-    .form-control:focus {
-        border-color: #007bff; /* Custom focus border color */
-        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Custom focus shadow */
-    }
-    h1 {
-        color: #343a40; /* Darker text color for better readability */
-    }
-    .btn-primary {
-        background-color: #007bff; /* Primary button color */
-        border-color: #007bff; /* Button border color */
-    }
-</style>
+<script src="/javascripts/validateForm.js"></script>

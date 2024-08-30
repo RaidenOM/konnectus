@@ -16,21 +16,23 @@
                             <%= locals.error %>
                         </div>
                     <% } %>
-                    <form action="/login" method="POST" novalidate>
+                    <form action="/login" method="POST" novalidate class="needs-validation">
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
                             <input type="text" class="form-control" id="username" name="username" required>
-                            <div class="invalid-feedback">
-                                Please enter your username.
+                            <div class="valid-feedback">
+                                Looks good!
                             </div>
                         </div>
+                        
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" id="password" name="password" required>
-                            <div class="invalid-feedback">
-                                Please enter your password.
-                            </div>
+                            <div class="valid-feedback">
+                                Looks good!
+                              </div>                          
                         </div>
+
                         <div class="mb-3 text-center">
                             <button type="submit" class="btn btn-primary">Login</button>
                         </div>
@@ -43,6 +45,8 @@
         </div>
     </div>
 </div>
+
+<script src="/javascripts/validateForm.js"></script>
 
 <style>
     body {

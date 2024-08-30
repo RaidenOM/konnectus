@@ -1,48 +1,57 @@
 <% layout('layouts/boilerplate') %>
 
-<h1 class="text-center my-5">Edit Alumni</h1>
-
-<div class="container">
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card shadow-lg">
+            <div class="card shadow-lg border-0">
                 <div class="card-header bg-warning text-white text-center">
-                    <h4>Edit Alumni Information</h4>
+                    <h2 class="mb-0">Edit Alumni</h2>
                 </div>
-                <div class="card-body">
-                    <form action="/alumni/<%= alumni.id %>/?_method=PUT" method="POST" novalidate>
-                        <div class="mb-3">
+                <div class="card-body p-4">
+                    <form action="/alumni/<%= alumni.id %>?_method=PUT" method="POST" novalidate class="needs-validation">
+                        <div class="form-group mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="alumni[name]" value="<%= alumni.name %>" required>
-                            <div class="valid-feedback">Looks good!</div>
+                            <input type="text" class="form-control form-control-lg" id="name" name="alumni[name]" value="<%= alumni.name %>" placeholder="Enter name" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="form-group mb-3">
                             <label for="graduationYear" class="form-label">Graduation Year</label>
-                            <input type="text" class="form-control" id="graduationYear" name="alumni[graduationYear]" value="<%= alumni.graduationYear %>" required>
-                            <div class="valid-feedback">Looks good!</div>
+                            <input type="text" class="form-control form-control-lg" id="graduationYear" name="alumni[graduationYear]" value="<%= alumni.graduationYear %>" placeholder="Enter graduation year" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="form-group mb-3">
                             <label for="major" class="form-label">Major</label>
-                            <input type="text" class="form-control" id="major" name="alumni[major]" value="<%= alumni.major %>" required>
-                            <div class="valid-feedback">Looks good!</div>
+                            <input type="text" class="form-control form-control-lg" id="major" name="alumni[major]" value="<%= alumni.major %>" placeholder="Enter major" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="form-group mb-3">
                             <label for="currentPosition" class="form-label">Current Position</label>
-                            <input type="text" class="form-control" id="currentPosition" name="alumni[currentPosition]" value="<%= alumni.currentPosition %>" required>
-                            <div class="valid-feedback">Looks good!</div>
+                            <input type="text" class="form-control form-control-lg" id="currentPosition" name="alumni[currentPosition]" value="<%= alumni.currentPosition %>" placeholder="Enter current position" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="form-group mb-4">
                             <label for="bio" class="form-label">Bio</label>
-                            <textarea class="form-control" name="alumni[bio]" id="bio" rows="4" required><%= alumni.bio %></textarea>
-                            <div class="valid-feedback">Looks good!</div>
+                            <textarea class="form-control form-control-lg" id="bio" name="alumni[bio]" rows="4" placeholder="Enter bio" required><%= alumni.bio %></textarea>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
                         </div>
 
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-warning">Update</button>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-warning btn-lg">Update Alumni</button>
+                            <a href="/alumni/<%= alumni.id %>" class="btn btn-secondary btn-lg">Cancel</a>
                         </div>
                     </form>
                 </div>
@@ -50,3 +59,5 @@
         </div>
     </div>
 </div>
+
+<script src="/javascripts/validateForm.js"></script>
