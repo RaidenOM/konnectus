@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const { default: mongoose } = require("mongoose");
 
 const alumniSchema = new mongoose.Schema({
     name: { type: String, required: true },
@@ -14,6 +14,8 @@ const alumniSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Staff'
     }
-})
+}, {
+    timestamps: true // This will add `createdAt` and `updatedAt` fields automatically
+});
 
 module.exports = mongoose.model('Alumni', alumniSchema)

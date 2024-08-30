@@ -6,7 +6,6 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="list-group">
-
                 <% for (let alumni of alumnis) { %>
                     <a href="/alumni/<%= alumni.id %>" class="list-group-item list-group-item-action mb-3 shadow-sm">
                         <div class="d-flex align-items-center">
@@ -15,7 +14,8 @@
                             <div class="w-100">
                                 <div class="d-flex justify-content-between">
                                     <h5 class="mb-1"><%= alumni.name %></h5>
-                                    <small class="text-muted">3 days ago</small>
+                                    <!-- Display the time ago -->
+                                    <small class="text-muted" data-time="<%= alumni.createdAt.toISOString() %>">Loading...</small>
                                 </div>
                                 <p class="mb-1"><%= alumni.bio %></p>
                                 <small class="text-muted">Current position: <%= alumni.currentPosition %></small>
@@ -33,3 +33,15 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/timeago.js@4.0.2/dist/timeago.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Convert all elements with data-time attributes to "time ago" format
+        const timeElements = document.querySelectorAll('[data-time]');
+        timeElements.forEach(element => {
+            const time = element.getAttribute('data-time');
+            element.innerText = timeago.format(time);
+        });
+    });
+</script>
