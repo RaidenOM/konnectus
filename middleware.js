@@ -1,6 +1,8 @@
 const Job = require('./models/job')
 const Event = require('./models/event')
 const Alumni = require('./models/alumni')
+const Joi = require('joi')
+const ExpressError = require('./utilites/expressError')
 
 module.exports.isLoggedIn = (req, res, next) => {
     if(!req.isAuthenticated()) {
@@ -24,8 +26,8 @@ module.exports.verifyOwnerAlumni = async (req, res, next)=>{
 
 module.exports.verifyStaffEventOwner = async (req, res, next)=>{
     const { id } = req.params
-    const event = await Event.findById(id)
-    if(!event.createdBy.equals(req.user.id)) {
+    const event = await Event.findById(id).populate('createdBy')
+    if(!event.createdBy.userId.equals(req.user.id)) {
         req.flash('error', 'You do not have permissions to do this')
         return res.redirect(`/events`)
     }
@@ -64,4 +66,65 @@ module.exports.isAlumni = (req, res, next) => {
         return res.redirect('/')
     }
     next()
+}
+
+module.exports.validateEvent = (req, res, next) => {
+    const eventSchema = Joi.object({
+        event: Joi.object({
+            title: Joi.string().required(),
+            description: Joi.string().required(),
+            date: Joi.date().required(),
+            location: Joi.string().required(),
+        })
+    }).required()
+
+    const { error } = eventSchema.validate(req.body)
+    if(error) {
+        const message = error.details.map(e => e.message).join(',')
+        throw new ExpressError(message, 400)
+    }else {
+        next()
+    }
+}
+
+module.exports.validateJob = (req, res, next) => {
+    const jobSchema = Joi.object({
+        job: Joi.object({
+            title: Joi.string().required(),
+            description: Joi.string().required(),
+            company: Joi.string().required(),
+            location: Joi.string().required(),
+        })
+    }).required()
+
+    const { error } = jobSchema.validate(req.body)
+    if(error) {
+        const message = error.details.map(e => e.message).join(',')
+        throw new ExpressError(message, 400)
+    }else {
+        next()
+    }
+}
+
+module.exports.validateAlumni = (req, res, next) => {
+    const alumniSchema = Joi.object({
+        alumni: Joi.object({
+            username: Joi.string().required(),
+            name: Joi.string().required(),
+            password: Joi.string().required(),
+            email: Joi.string().email().required(),
+            graduationYear: Joi.string().pattern(/^\d{4}$/).required(),
+            major: Joi.string().required(),
+            currentPosition: Joi.string().required(),
+            bio: Joi.string().required()
+        })
+    }).required()
+
+    const { error } = alumniSchema.validate(req.body)
+    if(error) {
+        const message = error.details.map(e => e.message).join(',')
+        throw new ExpressError(message, 400)
+    }else {
+        next()
+    }
 }

@@ -1,26 +1,59 @@
 <% layout('layouts/boilerplate') %>
 
-<div class="container my-5">
-    <h1 class="text-center mb-4 display-4"><%= job.title %></h1>
-    <h6 class="text-center mb-4 text-muted"><%= job.company %></h6>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-info text-white text-center">
+                    <h1 class="mb-0"><%= job.title %></h1>
+                    <h5 class="mt-2 text-light"><%= job.company %></h5>
+                </div>
+                <div class="card-body p-4">
+                    <h3 class="card-title">Job Details</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Location:</strong>
+                            <span class="badge bg-primary"><%= job.location %></span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Description:</strong> <br> <span class="text-muted"><%= job.description %></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Posted by:</strong>
+                            <span class="text-muted"><%= job.postedBy ? job.postedBy.name : 'Unknown' %></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Posted on:</strong>
+                            <span class="text-muted"><%= new Date(job.createdAt).toLocaleString() %></span>
+                        </li>
+                    </ul>
 
-    <div class="card mb-4 shadow-lg">
-        <div class="card-body">
-            <h5 class="card-title">Job Details</h5>
-            <p class="card-text"><strong>Location:</strong> <span class="badge bg-primary"><%= job.location %></span></p>
-            <p class="card-text"><strong>Description:</strong> <%= job.description %></p>
-            <p class="card-text"><strong>Posted by:</strong> <%= job.postedBy ? job.postedBy.name : 'Unknown' %></p>
-            <p class="card-text"><strong>Posted on:</strong> <%= new Date(job.createdAt).toLocaleString() %></p>
+                    <div class="d-flex justify-content-center mt-4 gap-3">
+                        <% if (currentUser && currentUser.role === 'alumni' && job.postedBy && job.postedBy.userId.equals(currentUser.id)) { %>
+                            <form action="/jobs/<%= job._id %>?_method=DELETE" method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-danger btn-lg" onclick="return confirm('Are you sure you want to delete this job?');">Delete Job</button>
+                            </form>
+                        <% } %>
+                        <a href="/jobs" class="btn btn-secondary btn-lg">Back to Job Listings</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="text-center mb-4">
-        <% if (currentUser && currentUser.role==='alumni' && job.postedBy.equals(currentUser.id)) { %>
-            
-            <form action="/jobs/<%= job._id %>?_method=DELETE" method="POST" class="d-inline">
-                <button type="submit" class="btn btn-danger btn-lg me-2" onclick="return confirm('Are you sure you want to delete this job?');">Delete Job</button>
-            </form>
-        <% } %>
-        <a href="/jobs" class="btn btn-secondary btn-lg">Back to Job Listings</a>
-    </div>
 </div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .card {
+        border-radius: 10px;
+    }
+    .card-header {
+        background-color: #17a2b8;
+        color: white;
+    }
+    .text-muted {
+        color: #6c757d;
+    }
+</style>

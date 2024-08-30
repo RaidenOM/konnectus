@@ -1,150 +1,127 @@
 <% layout('layouts/boilerplate') %>
 
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Register Page</h1>
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card shadow">
-                    <div class="card-header text-center">
-                        <h4>Create Your Account</h4>
-                    </div>
-                    <div class="card-body">
-                        <% if (locals.error) { %>
-                            <div class="alert alert-danger">
-                                <%= locals.error %>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Register Page</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header text-center">
+                    <h4>Create Your Account</h4>
+                </div>
+                <div class="card-body">
+                    <% if (locals.error) { %>
+                        <div class="alert alert-danger">
+                            <%= locals.error %>
+                        </div>
+                    <% } %>
+                    <form action="/register" method="POST" novalidate class="needs-validation" id="registrationForm">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="role" class="form-label">I am a:</label>
+                            <select class="form-select" id="role" name="role" required onchange="showRoleSpecificFields()">
+                                <option value="" disabled selected>Select your role</option>
+                                <option value="student">Student</option>
+                                <option value="staff">Staff</option>
+                            </select>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <!-- Student-specific fields -->
+                        <div id="studentFields" style="display: none;">
+                            <div class="mb-3">
+                                <label for="studentName" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="studentName" name="student[name]" required>
+                                <div class="valid-feedback">Looks good!</div>
                             </div>
-                            <% } %>
-                                <form action="/register" method="POST" novalidate class="needs-validation">
-                                    <div class="mb-3">
-                                        <label for="username" class="form-label">Username</label>
-                                        <input type="text" class="form-control" id="username" name="username" required>
-                                        <div class="valid-feedback">
-                                            Looks good!
-                                        </div>
-                                    </div>
 
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="email" name="email" required>
-                                        <div class="valid-feedback">
-                                            Looks good!
-                                        </div>
-                                    </div>
+                            <div class="mb-3">
+                                <label for="graduationYear" class="form-label">Graduation Year</label>
+                                <input type="text" class="form-control" id="graduationYear" name="student[graduationYear]" required>
+                                <div class="valid-feedback">Looks good!</div>
+                            </div>
 
-                                    <div class="mb-3">
-                                        <label for="password" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="password" name="password"
-                                            required>
-                                        <div class="valid-feedback">
-                                            Looks good!
-                                        </div>
-                                    </div>
+                            <div class="mb-3">
+                                <label for="major" class="form-label">Major</label>
+                                <input type="text" class="form-control" id="major" name="student[major]" required>
+                                <div class="valid-feedback">Looks good!</div>
+                            </div>
+                        </div>
 
-                                    <div class="mb-3">
-                                        <label for="role" class="form-label">I am a:</label>
-                                        <select class="form-select" id="role" name="role" required
-                                            onchange="showRoleSpecificFields()">
-                                            <option value="" disabled selected>Select your role</option>
-                                            <option value="student">Student</option>
-                                            <option value="staff">Staff</option>
-                                        </select>
-                                        <div class="valid-feedback">
-                                            Looks good!
-                                        </div>
-                                    </div>
+                        <!-- Staff-specific fields -->
+                        <div id="staffFields" style="display: none;">
+                            <div class="mb-3">
+                                <label for="staffName" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="staffName" name="staff[name]" required>
+                                <div class="valid-feedback">Looks good!</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="currentPosition" class="form-label">Current Position</label>
+                                <input type="text" class="form-control" id="currentPosition" name="staff[currentPosition]" required>
+                                <div class="valid-feedback">Looks good!</div>
+                            </div>
+                        </div>
 
-                                    <!-- Student-specific fields -->
-                                    <div id="studentFields" style="display: none;">
-                                        <div class="mb-3">
-                                            <label for="name" class="form-label">Name</label>
-                                            <input type="text" class="form-control" id="studentName"
-                                                name="student[name]" required>
-                                            <div class="valid-feedback">
-                                                Looks good!
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="graduationYear" class="form-label">Graduation Year</label>
-                                            <input type="text" class="form-control" id="graduationYear"
-                                                name="student[graduationYear]" required>
-                                            <div class="valid-feedback">
-                                                Looks good!
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="major" class="form-label">Major</label>
-                                            <input type="text" class="form-control" id="major" name="student[major]"
-                                                required>
-                                            <div class="valid-feedback">
-                                                Looks good!
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Staff-specific fields -->
-                                    <div id="staffFields" style="display: none;">
-                                        <div class="mb-3">
-                                            <label for="staffName" class="form-label">Name</label>
-                                            <input type="text" class="form-control" id="staffName" name="staff[name]">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="currentPosition" class="form-label">Current Position</label>
-                                            <input type="text" class="form-control" id="currentPosition"
-                                                name="staff[currentPosition]">
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3 text-center">
-                                        <button type="submit" class="btn btn-primary">Register</button>
-                                    </div>
-                                    <div class="text-center">
-                                        <p>Already have an account? <a href="/login">Login here</a></p>
-                                    </div>
-                                </form>
-                    </div>
+                        <div class="mb-3 text-center">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                        <div class="text-center">
+                            <p>Already have an account? <a href="/login">Login here</a></p>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <script src="/javascripts/validateForm.js"></script>
+<script>
+    function showRoleSpecificFields() {
+        console.log("Role changed"); // Debugging line
+        const role = document.getElementById('role').value;
+        const studentFields = document.getElementById('studentFields');
+        const staffFields = document.getElementById('staffFields');
 
-    <script>
-        function showRoleSpecificFields() {
-            const role = document.getElementById('role').value;
-            const studentFields = document.getElementById('studentFields');
-            const staffFields = document.getElementById('staffFields');
-
-            if (role === 'student') {
-                studentFields.style.display = 'block';
-                staffFields.style.display = 'none';
-            } else if (role === 'staff') {
-                staffFields.style.display = 'block';
-                studentFields.style.display = 'none';
-            } else {
-                studentFields.style.display = 'none';
-                staffFields.style.display = 'none';
-            }
+        if (role === 'student') {
+            studentFields.style.display = 'block';
+            staffFields.style.display = 'none';
+        } else if (role === 'staff') {
+            staffFields.style.display = 'block';
+            studentFields.style.display = 'none';
+        } else {
+            studentFields.style.display = 'none';
+            staffFields.style.display = 'none';
         }
-    </script>
+    }
+</script>
 
-    <style>
-        body {
-            background-color: #f8f9fa;
-            /* Light background color */
-        }
+<style>
+    body {
+        background-color: #f8f9fa; /* Light background color */
+    }
 
-        .card {
-            border-radius: 10px;
-            /* Rounded corners */
-        }
+    .card {
+        border-radius: 10px; /* Rounded corners */
+    }
 
-        .card-header {
-            background-color: #007bff;
-            /* Bootstrap primary color */
-            color: white;
-            /* Text color */
-        }
-    </style>
+    .card-header {
+        background-color: #007bff; /* Bootstrap primary color */
+        color: white; /* Text color */
+    }
+</style>

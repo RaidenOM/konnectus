@@ -59,7 +59,7 @@ module.exports.registerUser = async (req, res, next) => {
             if (err) {
                 return next(err);
             }
-            req.flash('success', 'Welcome to Vibelink!');
+            req.flash('success', 'Welcome to Konnectus!');
             res.redirect('/alumni');
         });
     } catch (e) {

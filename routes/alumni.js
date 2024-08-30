@@ -3,6 +3,7 @@ const router = express.Router({mergeParams: true})
 const { isLoggedIn, isStaff, verifyStaffAlumniOwner } = require('../middleware')
 const alumniController = require('../controllers/alumniController')
 const catchAsync = require('../utilites/catchAsync')
+const { validateAlumni } = require('../middleware')
 
 router.get('/', catchAsync(alumniController.showAlumnis));
 
@@ -12,7 +13,7 @@ router.get('/:id/edit', isLoggedIn, isStaff, catchAsync(verifyStaffAlumniOwner),
 
 router.get('/:id', catchAsync(alumniController.showAlumni));
 
-router.post('/', isLoggedIn, isStaff, catchAsync(alumniController.createAlumni));
+router.post('/', isLoggedIn, isStaff, validateAlumni, catchAsync(alumniController.createAlumni));
 
 router.delete('/:id', isLoggedIn, isStaff, catchAsync(verifyStaffAlumniOwner), catchAsync(alumniController.deleteAlumni));
 

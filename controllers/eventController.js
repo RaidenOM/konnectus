@@ -1,7 +1,8 @@
 const Event = require('../models/event')
+const Staff = require('../models/staff')
 
 module.exports.showEvents = async (req, res) => {
-    const events = await Event.find({});
+    const events = await Event.find({}).populate('createdBy');
     res.render('events/listEvents', { events });
 }
 
@@ -11,7 +12,8 @@ module.exports.newEventForm = (req, res) => {
 
 module.exports.createEvent = async (req, res) => {
     const { title, description, date, location } = req.body.event;
-    const event = new Event({ title, description, date, location, createdBy: req.user._id });
+    const staff = await Staff.findOne({userId: req.user.id})
+    const event = new Event({ title, description, date, location, createdBy: staff.id });
     await event.save();
     req.flash('success', 'Event created successfully!');
     res.redirect('/events');
