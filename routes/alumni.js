@@ -4,6 +4,9 @@ const { isLoggedIn, isStaff, verifyStaffAlumniOwner } = require('../middleware')
 const alumniController = require('../controllers/alumniController')
 const catchAsync = require('../utilites/catchAsync')
 const { validateAlumni } = require('../middleware')
+const multer = require('multer')
+const { storage } = require('../cloudinary/index')
+const upload = multer({ storage })
 
 router.get('/', catchAsync(alumniController.showAlumnis));
 
@@ -13,10 +16,10 @@ router.get('/:id/edit', isLoggedIn, isStaff, catchAsync(verifyStaffAlumniOwner),
 
 router.get('/:id', catchAsync(alumniController.showAlumni));
 
-router.post('/', isLoggedIn, isStaff, validateAlumni, catchAsync(alumniController.createAlumni));
+router.post('/', upload.single('alumni[profilePicture]'), isLoggedIn, isStaff, validateAlumni, catchAsync(alumniController.createAlumni));
 
 router.delete('/:id', isLoggedIn, isStaff, catchAsync(verifyStaffAlumniOwner), catchAsync(alumniController.deleteAlumni));
 
-router.put('/:id', isLoggedIn, isStaff, catchAsync(verifyStaffAlumniOwner), catchAsync(alumniController.updateAlumni));
+router.put('/:id', upload.single('alumni[profilePicture]'), isLoggedIn, isStaff, catchAsync(verifyStaffAlumniOwner), catchAsync(alumniController.updateAlumni));
 
 module.exports = router

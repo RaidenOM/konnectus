@@ -8,13 +8,19 @@
             <div class="list-group">
 
                 <% for (let alumni of alumnis) { %>
-                    <a href="/alumni/<%= alumni.id %>" class="list-group-item list-group-item-action mb-3 shadow-sm" aria-current="true">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1"><%= alumni.name %></h5>
-                            <small class="text-muted">3 days ago</small>
+                    <a href="/alumni/<%= alumni.id %>" class="list-group-item list-group-item-action mb-3 shadow-sm">
+                        <div class="d-flex align-items-center">
+                            <!-- Profile Picture -->
+                            <img src="<%= alumni.userId.profilePicture %>" alt="Profile Picture" class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; margin-right: 15px;">
+                            <div class="w-100">
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="mb-1"><%= alumni.name %></h5>
+                                    <small class="text-muted">3 days ago</small>
+                                </div>
+                                <p class="mb-1"><%= alumni.bio %></p>
+                                <small class="text-muted">Current position: <%= alumni.currentPosition %></small>
+                            </div>
                         </div>
-                        <p class="mb-1"><%= alumni.bio %></p>
-                        <small class="text-muted">Current position: <%= alumni.currentPosition %></small>
                     </a>
                 <% } %>
 

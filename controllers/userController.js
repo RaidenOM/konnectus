@@ -2,7 +2,9 @@ const User = require('../models/user')
 const Student = require('../models/student')
 const Staff = require('../models/staff')
 const Alumni = require('../models/alumni')
+const cloudinary = require('cloudinary').v2
 
+const DEFAULT_PROFILE_PICTURE = 'https://res.cloudinary.com/dnltrumxv/image/upload/v1725041443/Konnectus/tmvkfcg23qv8p5lckdkz.png'
 
 module.exports.userProfile = async (req, res) => {
     const user = req.user; // Get the logged-in user
@@ -19,6 +21,29 @@ module.exports.userProfile = async (req, res) => {
     res.render('users/profile', { user, userDetails });
 }
 
+module.exports.deleteProfile = async (req, res) => {
+    const user = req.user
+
+    if(user.profilePicture != DEFAULT_PROFILE_PICTURE) {
+        const publicId = user.profilePicture.split('/').slice(7).join('/').split('.')[0];
+        await cloudinary.uploader.destroy(publicId); 
+    }
+
+    const role = user.role
+
+    if(role==='student') {
+        await Student.findOneAndDelete({userId: user.id})
+    }else if(role==='staff') {
+        await Staff.findOneAndDelete({userId: user.id})
+    }else if(role==='alumni') {
+        await Alumni.findOneAndDelete({userId: user.id})
+    }
+
+    await User.findByIdAndDelete(user.id)
+
+    res.redirect('/')
+}
+
 
 module.exports.loginForm = (req, res) => {
     res.render('users/login');
@@ -32,9 +57,17 @@ module.exports.registerUser = async (req, res, next) => {
     try {
         const { username, email, password, role, student, staff } = req.body;
         const user = new User({ username, email, role });
+
+        const profilePicture = req.file ? req.file.path : null;
         
         // Register the user and log them in
         const registeredUser = await User.register(user, password);
+
+        //Add profile picture to registered user if provided
+        if(profilePicture) {
+            registeredUser.profilePicture = profilePicture
+            await registeredUser.save()
+        }
         
         // Create specific user type based on role
         if (role === 'student') {

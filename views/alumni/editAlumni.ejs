@@ -8,45 +8,47 @@
                     <h2 class="mb-0">Edit Alumni</h2>
                 </div>
                 <div class="card-body p-4">
-                    <form action="/alumni/<%= alumni.id %>?_method=PUT" method="POST" novalidate class="needs-validation">
+                    <form action="/alumni/<%= alumni.id %>?_method=PUT" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
+                        
+                        <!-- Display Current Profile Picture -->
+                        <div class="mb-3 text-center">
+                            <img src="<%= alumni.userId.profilePicture %>" alt="Profile Picture" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px;">
+                        </div>
+
+                        <!-- New Profile Picture Upload -->
+                        <div class="mb-3">
+                            <label for="profilePicture" class="form-label">Change Profile Picture</label>
+                            <input type="file" class="form-control" id="profilePicture" name="alumni[profilePicture]" accept="image/*">
+                        </div>
+
                         <div class="form-group mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control form-control-lg" id="name" name="alumni[name]" value="<%= alumni.name %>" placeholder="Enter name" required>
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
+                            <div class="valid-feedback">Looks good!</div>
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="graduationYear" class="form-label">Graduation Year</label>
                             <input type="text" class="form-control form-control-lg" id="graduationYear" name="alumni[graduationYear]" value="<%= alumni.graduationYear %>" placeholder="Enter graduation year" required>
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
+                            <div class="valid-feedback">Looks good!</div>
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="major" class="form-label">Major</label>
                             <input type="text" class="form-control form-control-lg" id="major" name="alumni[major]" value="<%= alumni.major %>" placeholder="Enter major" required>
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
+                            <div class="valid-feedback">Looks good!</div>
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="currentPosition" class="form-label">Current Position</label>
                             <input type="text" class="form-control form-control-lg" id="currentPosition" name="alumni[currentPosition]" value="<%= alumni.currentPosition %>" placeholder="Enter current position" required>
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
+                            <div class="valid-feedback">Looks good!</div>
                         </div>
 
                         <div class="form-group mb-4">
                             <label for="bio" class="form-label">Bio</label>
                             <textarea class="form-control form-control-lg" id="bio" name="alumni[bio]" rows="4" placeholder="Enter bio" required><%= alumni.bio %></textarea>
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
+                            <div class="valid-feedback">Looks good!</div>
                         </div>
 
                         <div class="d-grid gap-2">

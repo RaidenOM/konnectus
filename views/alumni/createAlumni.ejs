@@ -8,7 +8,7 @@
                     <h2 class="mb-0 text-center">Add Alumni</h2>
                 </div>
                 <div class="card-body p-4">
-                    <form action="/alumni" method="POST" novalidate class="needs-validation">
+                    <form action="/alumni" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
                         <!-- User Information Section -->
                         <div class="form-group mb-3">
                             <label for="username" class="form-label">Username</label>
@@ -25,6 +25,12 @@
                         <div class="form-group mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="alumni[email]" required placeholder="Enter email">
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="profilePicture" class="form-label">Profile Picture</label>
+                            <input type="file" class="form-control" id="profilePicture" name="alumni[profilePicture]" accept="image/*" required>
                             <div class="valid-feedback">Looks good!</div>
                         </div>
 

@@ -8,28 +8,79 @@
                     <h2 class="mb-0">User Profile</h2>
                 </div>
                 <div class="card-body p-4">
-                    <div class="mb-4">
-                        <h5>Username: <span class="text-muted"><%= user.username %></span></h5>
-                        <h5>Email: <span class="text-muted"><%= user.email %></span></h5>
-                        <h5>Id: <span class="text-muted"><%= user.id %></span></h5>
-                        <h5>Role: <span class="text-muted"><%= user.role %></span></h5>
+                    <!-- Profile Picture -->
+                    <div class="text-center mb-4">
+                        <img src="<%= user.profilePicture %>" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 150px; height: 150px;">
                     </div>
+
+                    <h3 class="card-title text-center mb-4"><%= user.username %></h3>
                     
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Email:</strong>
+                            <span class="text-muted"><%= user.email %></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>ID:</strong>
+                            <span class="text-muted"><%= user.id %></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>Role:</strong>
+                            <span class="text-muted"><%= user.role %></span>
+                        </li>
+                    </ul>
+
                     <% if (userDetails) { %>
-                        <div class="mb-4">
+                        <div class="mt-4">
                             <% if (user.role === 'student') { %>
-                                <h5>Name: <span class="text-muted"><%= userDetails.name %></span></h5>
-                                <h5>Graduation Year: <span class="text-muted"><%= userDetails.graduationYear %></span></h5>
-                                <h5>Major: <span class="text-muted"><%= userDetails.major %></span></h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>Name:</strong>
+                                        <span class="text-muted"><%= userDetails.name %></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>Graduation Year:</strong>
+                                        <span class="text-muted"><%= userDetails.graduationYear %></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>Major:</strong>
+                                        <span class="text-muted"><%= userDetails.major %></span>
+                                    </li>
+                                </ul>
                             <% } else if (user.role === 'staff') { %>
-                                <h5>Name: <span class="text-muted"><%= userDetails.name %></span></h5>
-                                <h5>Current Position: <span class="text-muted"><%= userDetails.currentPosition %></span></h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>Name:</strong>
+                                        <span class="text-muted"><%= userDetails.name %></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>Current Position:</strong>
+                                        <span class="text-muted"><%= userDetails.currentPosition %></span>
+                                    </li>
+                                </ul>
                             <% } else if (user.role === 'alumni') { %>
-                                <h5>Name: <span class="text-muted"><%= userDetails.name %></span></h5>
-                                <h5>Graduation Year: <span class="text-muted"><%= userDetails.graduationYear %></span></h5>
-                                <h5>Major: <span class="text-muted"><%= userDetails.major %></span></h5>
-                                <h5>Current Position: <span class="text-muted"><%= userDetails.currentPosition %></span></h5>
-                                <h5>Bio: <span class="text-muted"><%= userDetails.bio || 'N/A' %></span></h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>Name:</strong>
+                                        <span class="text-muted"><%= userDetails.name %></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>Graduation Year:</strong>
+                                        <span class="text-muted"><%= userDetails.graduationYear %></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>Major:</strong>
+                                        <span class="text-muted"><%= userDetails.major %></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>Current Position:</strong>
+                                        <span class="text-muted"><%= userDetails.currentPosition %></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <strong>Bio:</strong>
+                                        <span class="text-muted"><%= userDetails.bio || 'N/A' %></span>
+                                    </li>
+                                </ul>
                             <% } %>
                         </div>
                     <% } else { %>
@@ -38,8 +89,11 @@
                         </div>
                     <% } %>
                     
-                    <div class="d-grid gap-2">
+                    <div class="d-grid gap-2 mt-4">
                         <a href="/alumni" class="btn btn-primary btn-lg">Back to Alumni List</a>
+                        <form action="/profile/?_method=DELETE" method="post">
+                            <button type="submit" class="btn btn-danger btn-lg" style="width: 100%;">Delete Profile</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -55,11 +109,8 @@
         border-radius: 10px;
     }
     .card-header {
-        background-color: #17a2b8;
+        background-color: #17a2b8; /* Bootstrap info color */
         color: white;
-    }
-    h5 {
-        font-size: 1.1rem;
     }
     .text-muted {
         color: #6c757d;

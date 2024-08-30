@@ -8,6 +8,11 @@
                     <h2 class="mb-0">Alumni Profile</h2>
                 </div>
                 <div class="card-body p-4">
+                    <!-- Profile Picture -->
+                    <div class="text-center mb-4">
+                        <img src="<%= alumni.userId.profilePicture %>" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
+                    </div>
+
                     <h3 class="card-title text-center mb-4"><%= alumni.name %></h3>
                     
                     <ul class="list-group list-group-flush">
@@ -29,7 +34,7 @@
                         </li>
                     </ul>
 
-                    <% if(currentUser && currentUser.role === 'staff' && alumni.createdBy.equals(currentUser.id)) { %>
+                    <% if (currentUser && currentUser.role === 'staff' && alumni.createdBy.equals(currentUser.id)) { %>
                         <div class="d-flex justify-content-center mt-4 gap-3">
                             <a class="btn btn-primary btn-lg" href="/alumni/<%= alumni.id %>/edit">Edit</a>
                             <form action="/alumni/<%= alumni.id %>/?_method=DELETE" method="POST" style="display:inline;">
@@ -51,7 +56,7 @@
         border-radius: 10px;
     }
     .card-header {
-        background-color: #17a2b8;
+        background-color: #17a2b8; /* Bootstrap info color */
         color: white;
     }
     .text-muted {
