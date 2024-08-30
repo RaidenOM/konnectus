@@ -10,6 +10,8 @@ const upload = multer({ storage })
 
 router.get('/profile', isLoggedIn, userController.userProfile)
 
+router.delete('/profile', isLoggedIn, userController.deleteProfile)
+
 router.get('/login', userController.loginForm);
 
 router.get('/register', userController.registerForm);
