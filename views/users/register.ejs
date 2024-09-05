@@ -1,11 +1,10 @@
 <% layout('layouts/boilerplate') %>
 
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Register Page</h1>
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card shadow">
-                <div class="card-header text-center">
+                <div class="card-header text-center bg-primary text-white">
                     <h4>Create Your Account</h4>
                 </div>
                 <div class="card-body">
@@ -85,7 +84,7 @@
                         </div>
 
                         <div class="mb-3 text-center">
-                            <button type="submit" class="btn btn-primary">Register</button>
+                            <button type="submit" class="btn btn-success">Register</button>
                         </div>
                         <div class="text-center">
                             <p>Already have an account? <a href="/login">Login here</a></p>
@@ -116,18 +115,3 @@
         }
     }
 </script>
-
-<style>
-    body {
-        background-color: #f8f9fa; /* Light background color */
-    }
-
-    .card {
-        border-radius: 10px; /* Rounded corners */
-    }
-
-    .card-header {
-        background-color: #007bff; /* Bootstrap primary color */
-        color: white; /* Text color */
-    }
-</style>
