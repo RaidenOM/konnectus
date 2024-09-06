@@ -1,0 +1,33 @@
+<% layout('layouts/boilerplate') %>
+
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="mb-0 text-center">Create Testimonial</h2>
+                    </div>
+                    <div class="card-body p-4">
+                        <form action="/testimonial" method="POST" novalidate class="needs-validation">
+                            <div class="form-group mb-3">
+                                <label for="content" class="form-label">Testimonial Content</label>
+                                <textarea class="form-control" id="content" name="testimonial[content]" rows="5"
+                                    placeholder="Enter your testimonial" required></textarea>
+                                <div class="invalid-feedback">
+                                    Please enter your testimonial.
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-success btn-lg">Submit Testimonial</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/javascripts/validateForm.js"></script>

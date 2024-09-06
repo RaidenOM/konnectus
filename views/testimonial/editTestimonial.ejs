@@ -1,0 +1,33 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-info text-white text-center">
+                    <h2 class="mb-0">Edit Testimonial</h2>
+                </div>
+                <div class="card-body p-4">
+                    <form action="/testimonial/<%= testimonial._id %>?_method=PUT" method="POST" class="needs-validation" novalidate>
+                        <div class="form-group mb-3">
+                            <label for="content" class="form-label">Testimonial Content</label>
+                            <textarea class="form-control form-control-lg" id="content" name="testimonial[content]" rows="5" required><%= testimonial.content %></textarea>
+                            <div class="invalid-feedback">
+                                Please enter your updated testimonial.
+                            </div>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">Update Testimonial</button>
+                            <a href="/testimonial" class="btn btn-secondary btn-lg">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/javascripts/validateForm.js"></script>

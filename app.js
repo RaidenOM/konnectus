@@ -18,6 +18,7 @@ const alumniRoutes = require('./routes/alumni')
 const eventRoutes = require('./routes/event')
 const jobRoutes = require('./routes/job')
 const userRoutes = require('./routes/user') 
+const testimonialRoutes = require('./routes/testimonial')
 
 //Connect to MongoDB
 mongoose.connect(dbUrl)
@@ -83,6 +84,7 @@ app.use('/alumni', alumniRoutes)
 app.use('/', userRoutes)
 app.use('/events', eventRoutes)
 app.use('/jobs', jobRoutes)
+app.use('/testimonial', testimonialRoutes)
 
 
 app.get('/', (req, res) => {

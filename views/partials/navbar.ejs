@@ -12,6 +12,7 @@
                 <a href="/events" class="nav-link">Events</a>
                 <a href="#" class="nav-link">Donation Money</a>
                 <a href="/jobs" class="nav-link">Job Postings</a>
+                <a href="/testimonial" class="nav-link">Testimonial</a>
             </div>
             <div class="navbar-nav ms-auto">
                 <% if (!currentUser) { %>
@@ -19,13 +20,16 @@
                     <a href="/register" class="nav-link">Register</a>
                 <% } else { %>
                     <a href="/profile" class="nav-link">Profile</a> <!-- Profile link added -->
-                    <a href="/logout" class="nav-link">Logout</a>
+                    <% if(currentUser.role === 'alumni') { %>
+                        <a href="/testimonial/new" class="nav-link">Add Testimonial</a>
+                    <% } %>
                     <% if (currentUser.role === 'student') { %>
                         <a href="#" class="nav-link">Donate</a>
                     <% } %>
                     <% if (currentUser.role === 'staff') { %>
                         <a class="nav-link" href="/alumni/new">Add Alumni</a>
                     <% } %>
+                    <a href="/logout" class="nav-link btn btn-danger">Logout</a>
                 <% } %>
             </div>
         </div>

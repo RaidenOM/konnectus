@@ -26,7 +26,6 @@ module.exports.showAlumni = async (req, res) => {
 }
 
 module.exports.createAlumni = async (req, res) => {
-    console.log(req.body)
     const { username, password, email, name, currentPosition, graduationYear, major, bio} = req.body.alumni
     const user = new User({username, email})
     const registeredUser = await User.register(user, password)

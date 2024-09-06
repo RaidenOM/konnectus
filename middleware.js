@@ -3,6 +3,7 @@ const Event = require('./models/event')
 const Alumni = require('./models/alumni')
 const Joi = require('joi')
 const ExpressError = require('./utilites/expressError')
+const Testimonial = require('./models/testimonial')
 
 module.exports.isLoggedIn = (req, res, next) => {
     if(!req.isAuthenticated()) {
@@ -127,4 +128,30 @@ module.exports.validateAlumni = (req, res, next) => {
     }else {
         next()
     }
+}
+
+module.exports.validateTestimonial = (req, res, next) => {
+    const testimonialSchema = Joi.object({
+        testimonial: Joi.object({
+            content: Joi.string().required()
+        })
+    }).required()
+
+    const { error } = testimonialSchema.validate(req.body)
+    if(error) {
+        const message = error.details.map(e => e.message).join(',')
+        throw new ExpressError(message, 400)
+    }else {
+        next()
+    }
+}
+
+module.exports.isAlumniTestimonialOwner = async (req, res, next) => {
+    const { id } = req.params
+    const testimonial = await Testimonial.findById(id).populate('alumniId')
+    if(!testimonial.alumniId.userId.equals(req.user.id)) {
+        req.flash('error', 'You do not have permissions to do this')
+        return res.redirect(`/testimonial`)
+    }
+    next()
 }

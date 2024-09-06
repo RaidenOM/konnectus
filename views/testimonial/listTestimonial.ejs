@@ -1,0 +1,78 @@
+<% layout('layouts/boilerplate') %>
+
+<h1 class="text-center mb-4">Testimonials</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <% if (testimonials.length > 0) { %>
+            <% testimonials.forEach(testimonial => { %>
+                <div class="col-md-6 mb-4">
+                    <section class="mx-auto my-5" style="max-width: 23rem;">
+                        <div class="card testimonial-card mt-2 mb-3 shadow-lg">
+                            <div class="card-up aqua-gradient"></div>
+                            <div class="avatar mx-auto white" style="background-image: url('<%= testimonial.alumniId.userId.profilePicture %>');"></div>
+                            <div class="card-body text-center">
+                                <h4 class="card-title font-weight-bold">
+                                    <%= testimonial.alumniId.name %>
+                                </h4>
+                                <hr>
+                                <p><i class="fas fa-quote-left"></i>
+                                    <%= testimonial.content %>
+                                </p>
+                                <div class="button-container mt-3">
+                                    <% if(currentUser && currentUser.role === 'alumni' && testimonial.alumniId.userId.equals(currentUser.id)) { %>
+                                        <a class="btn btn-success btn-sm" href="/testimonial/<%= testimonial.id %>/edit">Edit</a>
+                                        <form action="/testimonial/<%= testimonial._id %>?_method=DELETE" method="POST" class="d-inline">
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
+                                    <% } else { %>
+                                        <!-- Empty container to maintain consistent card height -->
+                                        <div style="height: 38px;"></div>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <div class="col-12">
+                <div class="alert alert-info text-center" role="alert">
+                    No testimonials found.
+                </div>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f5f7fa;
+    }
+
+    .testimonial-card .card-up {
+        height: 120px;
+        overflow: hidden;
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+    }
+
+    .aqua-gradient {
+        background: linear-gradient(40deg, #2096ff, #05ffa3) !important;
+    }
+
+    .testimonial-card .avatar {
+        width: 120px;
+        height: 120px;
+        margin-top: -60px;
+        overflow: hidden;
+        border: 5px solid #fff;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .button-container {
+        min-height: 38px; /* This sets a consistent minimum height for the buttons container */
+    }
+</style>
