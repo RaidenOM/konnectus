@@ -7,6 +7,10 @@ const jobSchema = new mongoose.Schema({
     location: { type: String, required: true },
     postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'Alumni', required: true },
     createdAt: { type: Date, default: Date.now },
+    category: {
+        type: String,
+        default: 'Others'
+    }
 });
 
 module.exports = mongoose.model('Job', jobSchema);

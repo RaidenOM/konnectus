@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information and Role Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 20px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .role-heading {
+            margin-top: 20px;
+        }
+        .permissions {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">User Information and Role Details</h1>
+
+        <div class="permissions">
+            <h2>Role Permissions</h2>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <h5>Staff</h5>
+                    <p>Can create, update, and delete events and alumni.</p>
+                </li>
+                <li class="list-group-item">
+                    <h5>Alumni</h5>
+                    <p>Can add, delete job postings, and also add, update testimonials.</p>
+                </li>
+                <li class="list-group-item">
+                    <h5>Student</h5>
+                    <p>Currently no specific permissions detailed.</p>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Display users by role -->
+        <div class="role-heading">
+            <h2>Alumni</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">john_doe</h5>
+                        <p class="card-text"><strong>Password:</strong> john123</p>
+                        <p class="card-text"><strong>Email:</strong> john@example.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">jane_smith</h5>
+                        <p class="card-text"><strong>Password:</strong> jane123</p>
+                        <p class="card-text"><strong>Email:</strong> jane@example.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">alex_johnson</h5>
+                        <p class="card-text"><strong>Password:</strong> alex123</p>
+                        <p class="card-text"><strong>Email:</strong> alex@example.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">emily_white</h5>
+                        <p class="card-text"><strong>Password:</strong> emily123</p>
+                        <p class="card-text"><strong>Email:</strong> emily@example.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">daniel_wilson</h5>
+                        <p class="card-text"><strong>Password:</strong> daniel123</p>
+                        <p class="card-text"><strong>Email:</strong> daniel@example.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="role-heading">
+            <h2>Staff</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">mark_brown</h5>
+                        <p class="card-text"><strong>Password:</strong> mark123</p>
+                        <p class="card-text"><strong>Email:</strong> mark@example.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">lisa_clark</h5>
+                        <p class="card-text"><strong>Password:</strong> lisa123</p>
+                        <p class="card-text"><strong>Email:</strong> lisa@example.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">tom_jackson</h5>
+                        <p class="card-text"><strong>Password:</strong> tom123</p>
+                        <p class="card-text"><strong>Email:</strong> tom@example.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="role-heading">
+            <h2>Students</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">chris_miller</h5>
+                        <p class="card-text"><strong>Password:</strong> chris123</p>
+                        <p class="card-text"><strong>Email:</strong> chris@example.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">sarah_davis</h5>
+                        <p class="card-text"><strong>Password:</strong> sarah123</p>
+                        <p class="card-text"><strong>Email:</strong> sarah@example.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

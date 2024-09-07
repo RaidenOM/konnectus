@@ -14,6 +14,13 @@ module.exports.createEvent = async (req, res) => {
     const { title, description, date, location } = req.body.event;
     const staff = await Staff.findOne({userId: req.user.id})
     const event = new Event({ title, description, date, location, createdBy: staff.id });
+
+    const image = req.file ? req.file.path : null;
+    if(image) {
+        event.image = image
+    }
+
+
     await event.save();
     req.flash('success', 'Event created successfully!');
     res.redirect('/events');
@@ -32,14 +39,28 @@ module.exports.editEventForm = async (req, res) => {
 module.exports.updateEvent = async (req, res) => {
     const { id } = req.params;
     const { title, description, date, location } = req.body.event;
-    const event = await Event.findByIdAndUpdate(id, { title, description, date, location });
+
+    // Find the event
+    const event = await Event.findById(id);
     if (!event) {
         req.flash('error', 'Event not found!');
         return res.redirect('/events');
     }
+
+    // Prepare the update data
+    const updatedData = { title, description, date, location };
+
+    // If a new image is uploaded, update the image field
+    if (req.file) {
+        updatedData.image = req.file.path; // Update with new image path
+    }
+
+    // Update the event
+    await Event.findByIdAndUpdate(id, updatedData);
     req.flash('success', 'Event updated successfully!');
-    res.redirect(`/events`);
+    res.redirect('/events');
 }
+
 
 module.exports.deleteEvent = async (req, res) => {
     const { id } = req.params;

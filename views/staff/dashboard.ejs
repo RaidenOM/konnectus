@@ -1,0 +1,362 @@
+<% layout('layouts/boilerplate') %>
+    
+
+<div class="container mt-5 mb-5">
+    <h1 class="text-center mb-5 text-primary">Staff Dashboard</h1>
+
+    <div class="row justify-content-center">
+        <!-- Users Overview -->
+        <div class="col-md-3 mb-4">
+            <section class="mx-auto" style="max-width: 23rem;">
+                <div class="card shadow-sm" style="transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;" 
+                     onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 20px rgba(0, 0, 0, 0.2)';"
+                     onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='';">
+                    <img src="/images/user_image.jpg" 
+                         class="card-img-top" 
+                         alt="Total Users" 
+                         style="object-fit: cover; height: 200px; width: 100%; overflow: hidden;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Total Users</h5>
+                        <h2 class="card-text"><%= totalUsers %></h2>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-md-3 mb-4">
+            <section class="mx-auto" style="max-width: 23rem;">
+                <div class="card shadow-sm" style="transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;" 
+                     onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 20px rgba(0, 0, 0, 0.2)';"
+                     onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='';">
+                    <img src="/images/alumni_image.jpg" 
+                         class="card-img-top" 
+                         alt="Total Alumni" 
+                         style="object-fit: cover; height: 200px; width: 100%; overflow: hidden;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Total Alumni</h5>
+                        <h2 class="card-text"><%= totalAlumni %></h2>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-md-3 mb-4">
+            <section class="mx-auto" style="max-width: 23rem;">
+                <div class="card shadow-sm" style="transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;" 
+                     onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 20px rgba(0, 0, 0, 0.2)';"
+                     onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='';">
+                    <img src="/images/student_image.jpg" 
+                         class="card-img-top" 
+                         alt="Total Students" 
+                         style="object-fit: cover; height: 200px; width: 100%; overflow: hidden;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Total Students</h5>
+                        <h2 class="card-text"><%= totalStudents %></h2>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-md-3 mb-4">
+            <section class="mx-auto" style="max-width: 23rem;">
+                <div class="card shadow-sm" style="transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;" 
+                     onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 20px rgba(0, 0, 0, 0.2)';"
+                     onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='';">
+                    <img src="/images/staff_image.png" 
+                         class="card-img-top" 
+                         alt="Total Staff" 
+                         style="object-fit: cover; height: 200px; width: 100%; overflow: hidden;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Total Staff</h5>
+                        <h2 class="card-text"><%= totalStaff %></h2>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <div class="row justify-content-center mb-4">
+        <!-- Events Overview -->
+        <div class="col-md-3 mb-4">
+            <section class="mx-auto" style="max-width: 23rem;">
+                <div class="card shadow-sm" style="transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;" 
+                     onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 20px rgba(0, 0, 0, 0.2)';"
+                     onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='';">
+                    <img src="/images/event_image.jpeg" 
+                         class="card-img-top" 
+                         alt="Upcoming Events" 
+                         style="object-fit: cover; height: 200px; width: 100%; overflow: hidden;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Upcoming Events</h5>
+                        <h2 class="card-text"><%= totalUpcomingEvents %></h2>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-md-3 mb-4">
+            <section class="mx-auto" style="max-width: 23rem;">
+                <div class="card shadow-sm" style="transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;" 
+                     onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 20px rgba(0, 0, 0, 0.2)';"
+                     onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='';">
+                    <img src="/images/event_image.jpeg" 
+                         class="card-img-top" 
+                         alt="Total Events Held" 
+                         style="object-fit: cover; height: 200px; width: 100%; overflow: hidden; filter: grayscale(100%); transition: filter 0.3s;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Total Events Held</h5>
+                        <h2 class="card-text"><%= totalEventsHeld %></h2>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mb-4">
+        <!-- Financial Overview -->
+        <div class="col-md-6 mb-4">
+            <section class="mx-auto" style="max-width: 52rem;">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Total Money vs. Money Spent</h5>
+                        <canvas id="financialChart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- User Roles Overview -->
+        <div class="col-md-6 mb-4">
+            <section class="mx-auto" style="max-width: 52rem;">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">User Roles Distribution</h5>
+                        <canvas id="userRolesChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            <section class="mx-auto mt-4" style="max-width: 52rem;">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">User Registrations Per Day</h5>
+                        <canvas id="registrationChart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mb-4">
+        <!-- Job Categories Overview -->
+        <div class="col-md-12 mb-4">
+            <section class="mx-auto" style="max-width: 52rem;">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Job Categories Overview</h5>
+                        <canvas id="jobCategoriesChart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="/alumni/new" class="btn btn-success btn-lg">Add Alumni</a>
+        <a href="/events/new" class="btn btn-primary btn-lg">Add Event</a>
+    </div>
+</div>
+
+
+<style>
+    .navbar {
+        transition: background-color 0.3s ease !important; /* Smooth transition */
+    }
+
+    /* Change background color on scroll */
+    .sticky-top.scrolled {
+        background-color: rgb(99, 81, 206) !important; /* Purple color when scrolled */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important; /* Add shadow for better visibility */
+    }
+
+    .nav-link {
+        color: #fff !important; /* White text color for nav links */
+    }
+
+    .nav-link:hover {
+        color: #e0e0e0 !important; /* Lighter color on hover */
+    }
+</style>
+
+<script>
+    //navbar
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.sticky-top');
+        if (window.scrollY > 10) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Financial Chart
+    const ctxFinancial = document.getElementById('financialChart').getContext('2d');
+    const financialChart = new Chart(ctxFinancial, {
+        type: 'doughnut',
+        data: {
+            labels: ['Total Money', 'Money Spent'],
+            datasets: [{
+                data: [<%= totalDonationMoney %>, <%= totalDonationSpent %>],
+                backgroundColor: ['#36A2EB', '#FF6384'],
+                hoverBackgroundColor: ['#36A2EB', '#FF6384']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Financial Overview'
+                }
+            }
+        }
+    });
+
+    // User Roles Chart
+    const ctxUserRoles = document.getElementById('userRolesChart').getContext('2d');
+    const userRolesChart = new Chart(ctxUserRoles, {
+        type: 'bar',
+        data: {
+            labels: ['Users'],
+            datasets: [
+                {
+                    label: 'Alumni',
+                    data: [<%= totalAlumni %>],
+                    backgroundColor: '#FF6384',
+                    borderColor: '#FF6384',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Students',
+                    data: [<%= totalStudents %>],
+                    backgroundColor: '#36A2EB',
+                    borderColor: '#36A2EB',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Staff',
+                    data: [<%= totalStaff %>],
+                    backgroundColor: '#FFCE56',
+                    borderColor: '#FFCE56',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Number of Users'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                }
+            }
+        }
+    });
+
+    // User Registration Frequency Chart
+    const ctxRegistration = document.getElementById('registrationChart').getContext('2d');
+    const registrationData = <%- JSON.stringify(userRegistrationData) %>;
+
+    const labels = registrationData.map(item => `${item._id.year}-${item._id.month}-${item._id.day}`);
+    const data = registrationData.map(item => item.count);
+
+    const registrationChart = new Chart(ctxRegistration, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'User Registrations',
+                data: data,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Number of Registrations'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Date'
+                    }
+                }
+            }
+        }
+    });
+
+    // Job Categories Chart
+    const ctxJobCategories = document.getElementById('jobCategoriesChart').getContext('2d');
+    const jobCategoryData = <%- JSON.stringify(jobCategoryData) %>;
+
+    const labelsJobCategories = jobCategoryData.map(item => item._id || 'Others');
+    const dataJobCategories = jobCategoryData.map(item => item.count);
+
+    const datasets = labelsJobCategories.map((label, index) => ({
+        label: label,
+        data: [dataJobCategories[index]],
+        backgroundColor: getColorByIndex(index),
+        borderColor: getColorByIndex(index),
+        borderWidth: 1
+    }));
+
+    function getColorByIndex(index) {
+        const colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'];
+        return colors[index % colors.length];
+    }
+
+    const jobCategoriesChart = new Chart(ctxJobCategories, {
+        type: 'bar',
+        data: {
+            labels: ['Jobs'],
+            datasets: datasets
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Number of Jobs'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'top'
+                },
+                title: {
+                    display: true,
+                    text: 'Job Categories Overview'
+                }
+            }
+        }
+    });
+</script>
+

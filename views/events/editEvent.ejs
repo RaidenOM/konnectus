@@ -8,14 +8,13 @@
                     <h2 class="mb-0">Edit Event</h2>
                 </div>
                 <div class="card-body p-4">
-                    <form action="/events/<%= event._id %>?_method=PUT" method="POST" novalidate class="needs-validation">
+                    <form action="/events/<%= event._id %>?_method=PUT" method="POST" enctype="multipart/form-data" novalidate class="needs-validation">
                         <div class="form-group mb-3">
                             <label for="title" class="form-label">Event Title</label>
                             <input type="text" class="form-control form-control-lg" id="title" name="event[title]" value="<%= event.title %>" placeholder="Enter event title" required>
                             <div class="valid-feedback">
                                 Looks good!
-                              </div>
-                          
+                            </div>
                         </div>
 
                         <div class="form-group mb-3">
@@ -23,9 +22,9 @@
                             <textarea class="form-control form-control-lg" id="description" name="event[description]" rows="4" placeholder="Enter event description" required><%= event.description %></textarea>
                             <div class="valid-feedback">
                                 Looks good!
-                              </div>
-                          
+                            </div>
                         </div>
+
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -33,8 +32,7 @@
                                     <input type="date" class="form-control form-control-lg" id="date" name="event[date]" value="<%= event.date.toISOString().split('T')[0] %>" required>
                                     <div class="valid-feedback">
                                         Looks good!
-                                      </div>
-                                  
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -43,11 +41,24 @@
                                     <input type="text" class="form-control form-control-lg" id="location" name="event[location]" value="<%= event.location %>" placeholder="Enter event location" required>
                                     <div class="valid-feedback">
                                         Looks good!
-                                      </div>
-                                  
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Current Image Display -->
+                        <div class="mb-3">
+                            <label class="form-label">Current Image</label><br>
+                            <img src="<%= event.image %>" alt="Current Event Image" class="img-fluid mb-2 rounded-start rounded-end" style="max-height: 200px; max-width: 100%; object-fit: cover;">
+                        </div>
+
+                        <!-- New Image Upload -->
+                        <div class="form-group mb-3">
+                            <label for="image" class="form-label">Upload New Image (optional)</label>
+                            <input type="file" class="form-control" id="image" name="event[image]" accept="image/*">
+                            <small class="form-text text-muted">Leave blank if you don't want to change the image.</small>
+                        </div>
+
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-success btn-lg">Update Event</button>
                             <a href="/events" class="btn btn-secondary btn-lg">Cancel</a>

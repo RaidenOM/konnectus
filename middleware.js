@@ -95,6 +95,7 @@ module.exports.validateJob = (req, res, next) => {
             description: Joi.string().required(),
             company: Joi.string().required(),
             location: Joi.string().required(),
+            category: Joi.string().required()
         })
     }).required()
 

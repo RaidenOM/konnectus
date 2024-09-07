@@ -22,13 +22,14 @@ module.exports.showJob = async (req, res) => {
 
 
 module.exports.createJob = async (req, res) => {
-    const { title, description, company, location } = req.body.job;
+    const { title, description, company, location, category } = req.body.job;
     const alumni = await Alumni.findOne({userId: req.user.id})
     const job = new Job({
         title,
         description,
         company,
         location,
+        category,
         postedBy: alumni.id
     });
     await job.save();

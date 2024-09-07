@@ -19,6 +19,7 @@ const eventRoutes = require('./routes/event')
 const jobRoutes = require('./routes/job')
 const userRoutes = require('./routes/user') 
 const testimonialRoutes = require('./routes/testimonial')
+const dashboardRoutes = require('./routes/dashboard')
 const Testimonial = require('./models/testimonial')
 const Event = require('./models/event')
 const Job = require('./models/job')
@@ -88,6 +89,7 @@ app.use('/', userRoutes)
 app.use('/events', eventRoutes)
 app.use('/jobs', jobRoutes)
 app.use('/testimonial', testimonialRoutes)
+app.use('/dashboard', dashboardRoutes)
 
 
 app.get('/', async (req, res) => {
@@ -108,7 +110,9 @@ app.get('/', async (req, res) => {
 });
 
 
-
+app.get('/info', async (req, res) => {
+    res.render('info');
+});
 
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page not found', 404));
