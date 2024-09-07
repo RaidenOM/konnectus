@@ -19,7 +19,7 @@
                     <a href="/login" class="nav-link">Login</a>
                     <a href="/register" class="nav-link">Register</a>
                 <% } else { %>
-                    <a href="/profile" class="nav-link">Profile</a> <!-- Profile link added -->
+                    <a href="/profile" class="nav-link">Profile</a>
                     <% if(currentUser.role === 'alumni') { %>
                         <a href="/testimonial/new" class="nav-link">Add Testimonial</a>
                     <% } %>
@@ -35,3 +35,34 @@
         </div>
     </div>
 </nav>
+
+<style>
+    .navbar {
+        transition: background-color 0.3s ease !important; /* Smooth transition */
+    }
+
+    /* Change background color on scroll */
+    .sticky-top.scrolled {
+        background-color: rgb(99, 81, 206) !important; /* Purple color when scrolled */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important; /* Add shadow for better visibility */
+    }
+
+    .nav-link {
+        color: #fff !important; /* White text color for nav links */
+    }
+
+    .nav-link:hover {
+        color: #e0e0e0 !important; /* Lighter color on hover */
+    }
+</style>
+
+<script>
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.sticky-top');
+        if (window.scrollY > 10) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+</script>

@@ -19,6 +19,9 @@ const eventRoutes = require('./routes/event')
 const jobRoutes = require('./routes/job')
 const userRoutes = require('./routes/user') 
 const testimonialRoutes = require('./routes/testimonial')
+const Testimonial = require('./models/testimonial')
+const Event = require('./models/event')
+const Job = require('./models/job')
 
 //Connect to MongoDB
 mongoose.connect(dbUrl)
@@ -87,8 +90,21 @@ app.use('/jobs', jobRoutes)
 app.use('/testimonial', testimonialRoutes)
 
 
-app.get('/', (req, res) => {
-    res.render('home');
+app.get('/', async (req, res) => {
+    const testimonials = await Testimonial.find()
+        .populate({
+            path: 'alumniId', // Populate alumniId
+            populate: { // Populate the userId inside the alumniId
+                path: 'userId', // Reference to User
+                select: 'profilePicture name' // Select only necessary fields from User
+            }
+        })
+
+        const events = await Event.find({}).populate('createdBy');
+
+        const jobs = await Job.find({}).populate('postedBy');
+
+    res.render('home', { testimonials, events, jobs });
 });
 
 

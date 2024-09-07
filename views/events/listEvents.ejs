@@ -1,6 +1,5 @@
 <% layout('layouts/boilerplate') %>
 
-
 <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="text-primary">Upcoming Events</h1>
@@ -11,25 +10,68 @@
 
     <div class="row">
         <% events.forEach(event => { %>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h3 class="card-title text-primary"><%= event.title %></h3>
-                        <p class="card-text"><%= event.description %></p>
-                        <p class="card-text"><strong>Date:</strong> <%= event.date.toDateString() %></p>
-                        <p class="card-text"><strong>Location:</strong> <%= event.location %></p>
-                        <p class="card-text"><strong>Posted by:</strong> <%= event.createdBy && event.createdBy.name ? event.createdBy.name : 'Unknown' %></p>
-                    </div>
-                    <% if(currentUser && currentUser.role==='staff' && event.createdBy && event.createdBy.userId.equals(currentUser.id)) { %>
-                        <div class="card-footer d-flex justify-content-between">
-                            <a href="/events/<%= event._id %>/edit" class="btn btn-warning">Edit</a>
-                            <form action="/events/<%= event._id %>?_method=DELETE" method="POST" style="display:inline;">
-                                <button class="btn btn-danger">Delete</button>
-                            </form>
+            <% if (new Date(event.date) >= new Date()) { %>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <% 
+                            const imageUrl = event.image || 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=600'; 
+                        %>
+                        <img src="<%= imageUrl %>" class="card-img-top" alt="Event Image">
+                        <div class="card-body">
+                            <h3 class="card-title text-primary"><%= event.title %></h3>
+                            <p class="card-text"><%= event.description %></p>
+                            <p class="card-text"><strong>Date:</strong> <%= event.date.toDateString() %></p>
+                            <p class="card-text"><strong>Location:</strong> <%= event.location %></p>
+                            <p class="card-text"><strong>Posted by:</strong> <%= event.createdBy && event.createdBy.name ? event.createdBy.name : 'Unknown' %></p>
                         </div>
-                    <% } %>
+                        <% if(currentUser && currentUser.role==='staff' && event.createdBy && event.createdBy.userId.equals(currentUser.id)) { %>
+                            <div class="card-footer d-flex justify-content-between">
+                                <a href="/events/<%= event._id %>/edit" class="btn btn-warning">Edit</a>
+                                <form action="/events/<%= event._id %>?_method=DELETE" method="POST" style="display:inline;">
+                                    <button class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        <% } %>
+                    </div>
                 </div>
-            </div>
+            <% } %>
         <% }) %>
+    </div>
+
+    <% // Check for past events %>
+    <div class="mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="text-secondary">Past Events</h1>
+        </div>
+        
+        <div class="row">
+            <% events.forEach(event => { %>
+                <% if (new Date(event.date) < new Date()) { %>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <% 
+                                const pastImageUrl = event.image || 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=600'; 
+                            %>
+                            <img src="<%= pastImageUrl %>" class="card-img-top" alt="Event Image">
+                            <div class="card-body">
+                                <h3 class="card-title text-secondary"><%= event.title %></h3>
+                                <p class="card-text"><%= event.description %></p>
+                                <p class="card-text"><strong>Date:</strong> <%= event.date.toDateString() %></p>
+                                <p class="card-text"><strong>Location:</strong> <%= event.location %></p>
+                                <p class="card-text"><strong>Posted by:</strong> <%= event.createdBy && event.createdBy.name ? event.createdBy.name : 'Unknown' %></p>
+                            </div>
+                            <% if(currentUser && currentUser.role==='staff' && event.createdBy && event.createdBy.userId.equals(currentUser.id)) { %>
+                                <div class="card-footer d-flex justify-content-between">
+                                    <a href="/events/<%= event._id %>/edit" class="btn btn-warning">Edit</a>
+                                    <form action="/events/<%= event._id %>?_method=DELETE" method="POST" style="display:inline;">
+                                        <button class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                <% } %>
+            <% }) %>
+        </div>
     </div>
 </div>

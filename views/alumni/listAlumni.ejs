@@ -1,23 +1,23 @@
 <% layout('layouts/boilerplate') %>
 
 <div class="container mt-5 mb-5">
-    <h1 class="mb-5 text-center">List of All Alumni</h1>
+    <h1 class="mb-5 text-center text-primary">Our Alumnis</h1>
 
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10 col-lg-8">
             <div class="list-group">
                 <% for (let alumni of alumnis) { %>
-                    <a href="/alumni/<%= alumni.id %>" class="list-group-item list-group-item-action mb-3 shadow-sm">
+                    <a href="/alumni/<%= alumni.id %>" class="list-group-item list-group-item-action mb-4 shadow-sm hover-effect">
                         <div class="d-flex align-items-center">
                             <!-- Profile Picture -->
-                            <img src="<%= alumni.userId.profilePicture %>" alt="Profile Picture" class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; margin-right: 15px;">
+                            <img src="<%= alumni.userId.profilePicture %>" alt="Profile Picture" class="rounded-circle" style="width: 80px; height: 80px; object-fit: cover; margin-right: 15px;">
                             <div class="w-100">
                                 <div class="d-flex justify-content-between">
-                                    <h5 class="mb-1"><%= alumni.name %></h5>
+                                    <h5 class="mb-1 text-dark"><%= alumni.name %></h5>
                                     <!-- Display the time ago -->
                                     <small class="text-muted" data-time="<%= alumni.createdAt.toISOString() %>">Loading...</small>
                                 </div>
-                                <p class="mb-1"><%= alumni.bio %></p>
+                                <p class="mb-1 text-secondary"><%= alumni.bio %></p>
                                 <small class="text-muted">Current position: <%= alumni.currentPosition %></small>
                             </div>
                         </div>
@@ -45,3 +45,13 @@
         });
     });
 </script>
+
+<style>
+    .hover-effect {
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hover-effect:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+</style>
