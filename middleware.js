@@ -76,7 +76,7 @@ module.exports.validateEvent = (req, res, next) => {
             description: Joi.string().required(),
             date: Joi.date().required(),
             location: Joi.string().required(),
-        })
+        }).required()
     }).required()
 
     const { error } = eventSchema.validate(req.body)
@@ -96,7 +96,7 @@ module.exports.validateJob = (req, res, next) => {
             company: Joi.string().required(),
             location: Joi.string().required(),
             category: Joi.string().required()
-        })
+        }).required()
     }).required()
 
     const { error } = jobSchema.validate(req.body)
@@ -119,7 +119,7 @@ module.exports.validateAlumni = (req, res, next) => {
             major: Joi.string().required(),
             currentPosition: Joi.string().required(),
             bio: Joi.string().required()
-        })
+        }).required()
     }).required()
 
     const { error } = alumniSchema.validate(req.body)
@@ -135,7 +135,7 @@ module.exports.validateTestimonial = (req, res, next) => {
     const testimonialSchema = Joi.object({
         testimonial: Joi.object({
             content: Joi.string().required()
-        })
+        }).required()
     }).required()
 
     const { error } = testimonialSchema.validate(req.body)
