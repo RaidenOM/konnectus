@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Vibelink - Connect with alumni, students, and staff.">
+    <meta name="description" content="Konnectus - Connect with alumni, students, and staff.">
     <meta name="author" content="Your Name">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
@@ -35,12 +35,10 @@
                     <a class="nav-link" href="/testimonial">Testimonial</a>
                     
                     <% if (currentUser) { %>
-                        
-                        <% if (currentUser.role === 'student') { %>
-                            <a class="nav-link" href="/donate">Donate</a>
-                            <% } else if (currentUser.role === 'staff') { %>
+                            <a href="/profile" class="nav-link">Profile</a>
+                            <% if (currentUser.role === 'staff') { %>
                                 <a class="nav-link" href="/dashboard">Dashboard</a>
-                        <% } %>
+                            <% } %>
                             <a class="nav-link" href="/logout">Logout</a>
                     <% } else { %>
                         <a class="nav-link" href="/login">Login</a>
